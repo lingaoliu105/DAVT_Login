@@ -62,7 +62,6 @@ Desktop.ini
 .vscode/
 
 # Node.js generated files
-node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -73,25 +72,16 @@ yarn-error.log
 .env.production.local
 
 # Log files
-*.log
 logs/
 
 # Runtime data
 pids/
-*.pid
-*.pid.lock
 
 # Debug logs
 debug.log
 
-# Environment
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # Editor directories and files
-.vscode/
 *.suo
 *.ntvs*
 *.njsproj
@@ -100,3 +90,6 @@ debug.log
 
 # exclude generated code
 bin
+
+# exclude db credentials - different on local and server
+/config/db-credentials.json
