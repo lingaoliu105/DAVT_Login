@@ -29,9 +29,31 @@ router.post('/register', async (req, res) => {
 // });
 
 // 用户登录
-router.post('/api/login', (req, res) => {
+router.post('/login', async (req, res) => {
     // 处理用户登录逻辑
-    res.status(200).json({ message: 'User logged in successfully' });
+    try {
+        const {username, password} = req.body
+        const registeredUsers = await User.findAll({
+            where: {
+                username: username
+            }
+        })
+        for (const registeredUser of registeredUsers) {
+            console.log(registeredUser)
+            if (registeredUser.password===password){
+                res.status(200).json({message: 'User logged in successfully'});
+                return
+            }else{
+                res.status(401).send("Incorrect password")
+                return
+            }
+        }
+        res.status(404).send("User not found")
+
+    }catch (e){
+        console.log(e)
+        res.status(500).send("server error")
+    }
 });
 
 // 获取用户信息
