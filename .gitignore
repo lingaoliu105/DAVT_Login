@@ -88,8 +88,6 @@ debug.log
 *.sln
 *.sw?
 
-# exclude generated code
-bin
 
 # exclude db credentials - different on local and server
 /config/db-credentials.json
