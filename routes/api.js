@@ -15,6 +15,9 @@ router.post('/register', async (req, res) => {
         res.status(201).json(newUser);
     } catch (error) {
         console.log(error)
+        if (error.name==="SequelizeUniqueConstraintError"){
+            res.status(409).send("duplicate registration")
+        }
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
