@@ -3,6 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const User = require('../models/user');
 const History = require('../models/history')
+const { Op } = require('sequelize');
+
 
 /* APIs starting with /users */
 /* GET users listing. */
@@ -39,7 +41,7 @@ router.post('/login', async (req, res) => {
         const {username, password} = req.body
         const registeredUsers = await User.findAll({
             where: {
-                $or: [
+                [Op.or]: [
                     // both username or email can be used for validation
                     {username: username},
                     {email: username}
