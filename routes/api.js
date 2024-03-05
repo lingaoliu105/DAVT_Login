@@ -39,7 +39,11 @@ router.post('/login', async (req, res) => {
         const {username, password} = req.body
         const registeredUsers = await User.findAll({
             where: {
-                username: username
+                $or:[
+                    // both username or email can be used for validation
+                    {username: username},
+                    {email:username}
+                ]
             }
         })
         for (const registeredUser of registeredUsers) {
