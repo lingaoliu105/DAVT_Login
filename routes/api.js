@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const User = require('../models/user');
 const History = require('../models/history')
 const { Op } = require('sequelize');
@@ -129,7 +128,7 @@ router.get("/history", async (req, res) => {
             where: {
                 email: email
             },
-            order: [['createdAt']]
+            order: [['createdAt','DESC']]
 
         })
         res.status(200).json(queriedRecords)
